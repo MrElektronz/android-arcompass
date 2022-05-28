@@ -2,6 +2,7 @@ package de.thowl.arcompass
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -48,6 +49,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        // Model Viewer
+        with(binding.modelWebView){
+            loadUrl("file:///android_asset/modelViewer.html")
+            settings.apply {
+                javaScriptEnabled = true
+                loadWithOverviewMode = true
+            }
+            setBackgroundColor(Color.TRANSPARENT)
+        }
+
     }
 
     /**
